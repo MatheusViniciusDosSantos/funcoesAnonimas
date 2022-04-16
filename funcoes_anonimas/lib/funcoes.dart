@@ -15,7 +15,15 @@ void verificarAprovacao(double nota1, double nota2) {
   }
 }
 
-void verificarMaiorNota(double nota1, double nota2) {}
+void verificarMaiorNota(double nota1, double nota2) {
+  if (nota1 > nota2) {
+    print("a nota $nota1 é a maior.");
+  } else if (nota1 < nota2) {
+    print("a nota $nota2 é a maior.");
+  } else {
+    print("As notas tem o mesmo valor.");
+  }
+}
 
 double calcularMedia(double nota1, double nota2) {
   return (nota1 + nota2) / 2;
