@@ -72,7 +72,7 @@ void show() {
     01 - Verificar a aprovação.
     02 - Calcular a média.
     03 - Verifica a maior nota.
-''');
+  ''');
   int opcao = int.parse(stdin.readLineSync()!);
   print("Nota 1:");
   double nota1 = double.parse(stdin.readLineSync()!);
@@ -82,7 +82,13 @@ void show() {
   if (opcao == 1) {
     resultado = interface(nota1, nota2, verificaAprovacao);
   } else if (opcao == 2) {
-    resultado = "A média é ${interface(nota1, nota2, calcularMedia)}" ;
+    //Função anônima que realiza a mesma coisa que a função nomeada calcularMedia(ela está comentada agora)
+    resultado = "A média é ${interface(nota1, nota2, 
+      (double nota1, double nota2) {
+        double media = (nota1 + nota2) / 2;
+        return media;
+      }
+    )}" ;
   } else if (opcao == 3) {
     resultado = "a maior nota é ${interface(nota1, nota2, maiorNota)}";
   } else {
@@ -108,10 +114,10 @@ String verificaAprovacao(double nota1, double nota2) {
 }
 
 //Função de calcular a média
-double calcularMedia(double nota1, double nota2) {
-  double media = (nota1 + nota2) / 2;
-  return media;
-}
+// double calcularMedia(double nota1, double nota2) {
+//   double media = (nota1 + nota2) / 2;
+//   return media;
+// }
 
 //Função de verificar maior nota
 double maiorNota(double nota1, double nota2) {

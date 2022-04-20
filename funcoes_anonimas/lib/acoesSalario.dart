@@ -20,6 +20,7 @@ void show() {
   double salario1 = 0.00;
   double salario2 = 0.00;
   double bonusDesconto = 0.00;
+  String resultado = "";
   print('''
   Escolha uma opção a ser realizada com o salário:
     01 - Bonificar.
@@ -33,56 +34,70 @@ void show() {
   if (opcao != 3) {
     if (opcao == 1) {
       print("Bônus: ");
+      bonusDesconto = double.parse(stdin.readLineSync()!);
+      resultado = interface(salario1, bonusDesconto, bonificar);
     } else {
       print("Desconto: ");
+      bonusDesconto = double.parse(stdin.readLineSync()!);
+      resultado = interface(salario1, bonusDesconto, descontar);
     }
-    bonusDesconto = double.parse(stdin.readLineSync()!);
   } else {
     print("Salário 2: ");
     salario2 = double.parse(stdin.readLineSync()!);
-  }
+    resultado = "O maior salario é ${interface(salario1, salario2, 
 
-  String resultado = interface(opcao, salario1, salario2, bonusDesconto);
+    //Função anônima.
+      (double salario1, double salario2) {
+        if (salario1 > salario2) {
+          return salario1;
+        } else {
+          return salario2;
+        }
+      }
+    )}";
+  }
   print(resultado);
 }
 
-String interface(
-    int opcao, double salario1, double salario2, double bonusDesconto) {
-  if (opcao == 1) {
-    return bonificar(salario1, bonusDesconto);
-  } else if (opcao == 2) {
-    return descontar(salario1, bonusDesconto);
-  } else if (opcao == 3) {
-    return "O maior salario é ${comparar(salario1, salario2)}";
-  } else {
-    return "Opção inválida.";
-  }
+//Passando um função como parâmetro.
+String interface(double salario1, double valor2, Function funcao) {
+  return funcao(salario1, valor2);
 }
 
 String bonificar(double salario, double bonus) {
-  var valor = salario + (salario * (bonus / 100));
-  if (valor > 1212.00) {
-    return "o valor maior que o salario mínimo.";
-  } else {
-    return "O valor não é maior que o salário mínimo.";
+  try {
+    var valor = salario + (salario * (bonus / 100));
+    if (valor > 1212.00) {
+      return "o valor maior que o salario mínimo.";
+    } else {
+      return "O valor não é maior que o salário mínimo.";
+    }
+  } catch (e) {
+    return "Falha ao realizar operação de bonificação";
   }
 }
 
 String descontar(double salario, double desconto) {
-  var valor = salario - (salario * (desconto / 100));
-  if (valor > 0) {
-    return "O valor é positivo.";
-  } else if (valor == 0) {
-    return "O valor é igual a zero.";
-  } else {
-    return "O valor é negativo.";
+  try {
+    var valor = salario - (salario * (desconto / 100));
+    if (valor > 0) {
+      return "O valor é positivo.";
+    } else if (valor == 0) {
+      return "O valor é igual a zero.";
+    } else {
+      return "O valor é negativo.";
+    }
+  } catch (e) {
+    return "Erro ao realizar operação descontar";
   }
+  
 }
 
-double comparar(double salario1, double salario2) {
-  if (salario1 > salario2) {
-    return salario1;
-  } else {
-    return salario2;
-  }
-}
+//Comentado o método pois foi implementada uma função anônima para realizar tal função
+// double comparar(double salario1, double salario2) {
+//   if (salario1 > salario2) {
+//     return salario1;
+//   } else {
+//     return salario2;
+//   }
+// }
