@@ -78,21 +78,23 @@ void show() {
   double nota1 = double.parse(stdin.readLineSync()!);
   print("Nota 2:");
   double nota2 = double.parse(stdin.readLineSync()!);
-  String resultado = interface(opcao, nota1, nota2);
+  String resultado = "";
+  if (opcao == 1) {
+    resultado = interface(nota1, nota2, verificaAprovacao);
+  } else if (opcao == 2) {
+    resultado = "A média é ${interface(nota1, nota2, calcularMedia)}" ;
+  } else if (opcao == 3) {
+    resultado = "a maior nota é ${interface(nota1, nota2, maiorNota)}";
+  } else {
+    resultado = "Opção inválida.";
+  }
+
   print(resultado);
 }
 
 //Função de returno da interface
-String interface(int opcao, double nota1, double nota2) {
-  if (opcao == 1) {
-    return verificaAprovacao(nota1, nota2);
-  } else if (opcao == 2) {
-    return "A média é ${calcularMedia(nota1, nota2)}";
-  } else if (opcao == 3) {
-    return "a maior nota é ${maiorNota(nota1, nota2)}";
-  } else {
-    return "Opção inválida.";
-  }
+String interface(double nota1, double nota2, Function minhaFuncao) {
+  return minhaFuncao(nota1, nota2);
 }
 
 //Função de verificar a aprovação
