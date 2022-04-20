@@ -90,7 +90,10 @@ void show() {
       }
     )}" ;
   } else if (opcao == 3) {
-    resultado = "a maior nota é ${interface(nota1, nota2, maiorNota)}";
+    resultado = "a maior nota é ${interface(nota1, nota2, 
+    //Feita uma arrow function, função com apenas 1 linha e o que tem na frente da lanbda é o retorno, e usado o operador ternário para reduzir tudo para uma linha.
+    (double nota1, double nota2) => (nota1 > nota2) ? nota1 : nota2
+    )}";
   } else {
     resultado = "Opção inválida.";
   }
