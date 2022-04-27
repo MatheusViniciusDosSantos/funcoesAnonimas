@@ -130,3 +130,26 @@ double maiorNota(double nota1, double nota2) {
     return nota2;
   }
 }
+
+//Função de verificar a aprovação, usando o valor mediaAprovacao como um valor opcional, uma vez que é um valor opcional,
+// é necessário informar um valor padrão para quando esse valor não for informado na chamada da função.
+String verificaAprovacaoComMedia(double nota1, double nota2, [double mediaAprovacao=6]) {
+  double media = (nota1 + nota2) / 2;
+  if (media >= mediaAprovacao) {
+    return "Aprovado";
+  } else {
+    return "Reprovado";
+  }
+}
+
+//Função de verificar a aprovação, aqui temos o chamado parametro nomeado, quando essa função for chamada será mostrado o
+// nome do parametro na chamada da função, logo não é necessário que os parametros estejam na orde correta na sua chamada
+// desde que o valor esteja associado a referencia correta.
+String verificaAprovacaoComParametroNomeado({required double nota1, required double nota2, double mediaAprovacao = 6}) {
+  double media = (nota1 + nota2) / 2;
+  if (media >= mediaAprovacao) {
+    return "Aprovado";
+  } else {
+    return "Reprovado";
+  }
+}
