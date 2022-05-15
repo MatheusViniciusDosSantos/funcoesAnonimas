@@ -22,9 +22,27 @@ Quais são as principais exceções existentes no dart?
     Falha de carregamento, erro de formatação(tipo de dado errado), numero dividido por zero,
     exeções de entrada e saida, exceções para quando um isolado não pode ser criado, exceção de tempo de execução.
 O que é para que serve o bloco try-catch? O que é e como utilizamos o objeto de exceção? O que é e como utilizamos o objeto Stack trace?
+    O Bloco try-cacth serve para evitar que uma parte do código que esteja sujeita a causar erros na aplicação cause um erro e esse erro 
+    interrompa a execução correta do código além de ser realizado um tipo de tratamento para caso realmente aconteça esse erro, o que
+    deveria ser feito quando acontecesse o erro é isso que acontece.
 
 Explique e exemplifique o uso das cláusulas on e finally no bloco try-cath.
+    O bloco de intrções on acontece somente quando uma exceção especifica vai aconter
+void main() { 
+    String inteiroString = stdin.readLineSync()!//Esperando um número para transoformar
+    try{ 
+        var inteiro = int.parse(inteiroString);
+        print(inteiro); 
+    } 
+    on FormatException{ 
+        print("Não foi possivel transsformar o valor, digite um número válido");//Caso tenha sido digitado uma letra ou caracter especial
+    } 
+}
 Implemente o try-catch (com relevância) em nas funções do seu projeto.
 É possível criar exceções específicas? Se sim, em que caso podem ser utilizas?
+    Sim, elas são usadas quando, por exemplo, o usuário não informou um dado entre determinados valores válidos, o
+    usuário vai digitar que sua pontuação é -100 pontos mas a competição só aceita valores de pontos positivos então 
+    aí podemos fazer uma exeção específica para quando o usuário for informar o número de pontos só poder informar valores
+    positivos.
 analise o seu projeto e crie exceções específicas que facilite a localizção e a manutenção do projeto.
 */
